@@ -1,0 +1,179 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "palette": {
+    "fujiWhite": "#DCD7BA",
+    "autumnGreen": "#76946A",
+    "autumnRed": "#C34043",
+    "roninYellow": "#FF9E3B",
+    "waveAqua1": "#6A9589",
+    "dragonBlue": "#658594",
+    "springViolet2": "#9CABCA",
+    "crystalBlue": "#7E9CD8",
+    "springGreen": "#98BB6C",
+    "boatYellow2": "#C0A36E",
+    "sakuraPink": "#D27E99",
+    "waveRed": "#E46876",
+    "katanaGray": "#717C7C"
+  },
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": false,
+      "segments": [
+        {
+          "foreground": "p:katanaGray",
+          "style": "plain",
+          "template": "[",
+          "type": "text"
+        },
+        {
+          "foreground": "p:dragonBlue",
+          "style": "plain",
+          "template": "{{ .Icon }}",
+          "type": "os"
+        },
+        {
+          "foreground": "p:katanaGray",
+          "style": "plain",
+          "template": "\udb83\udfdf",
+          "type": "text"
+        },
+        {
+          "foreground": "p:boatYellow2",
+          "template": "\udb80\udf5b {{ .PhysicalPercentUsed }}\uf295",
+          "properties": {
+            "precision": 2
+          },
+          "style": "plain",
+          "type": "sysinfo"
+        },
+        {
+          "foreground": "p:katanaGray",
+          "style": "plain",
+          "template": "\udb83\udfdf",
+          "type": "text"
+        },
+        {
+          "foreground_templates": [
+            "{{ if ge .Percentage 69}}p:autumnGreen{{ end }}",
+            "{{ if and (ge .Percentage 40) (le .Percentage 68) }}p:boatYellow2{{ end }}",
+            "{{ if and (ge .Percentage 10) (le .Percentage 39) }}p:waveRed{{ end }}",
+            "{{ if le .Percentage 9 }}p:autumnRed{{ end }}"
+          ],
+          "style": "plain",
+          "template": "{{ if ge .Percentage 69}}\udb84\udea3{{ else if and (ge .Percentage 40) (le .Percentage 68) }}\udb84\udea2{{ else if and (ge .Percentage 10) (le .Percentage 39) }}\udb84\udea1{{ else if le .Percentage 9 }}\udb80\udc8e{{end}} {{ .Percentage }}\uf295",
+          "type": "battery"
+        },
+        {
+          "foreground": "p:katanaGray",
+          "style": "plain",
+          "template": "] ",
+          "type": "text"
+        },
+        {
+          "foreground": "p:fujiWhite",
+          "properties": {
+            "folder_icon": "<p:waveAqua1>\uf114</>",
+            "folder_separator_template": "<p:katanaGray>/</>",
+            "home_icon": "<p:waveAqua1>\ueb06</>",
+            "style": "agnoster"
+          },
+          "style": "plain",
+          "template": "{{.Path}}",
+          "type": "path"
+        },
+        {
+          "type": "node",
+          "style": "plain",
+          "foreground": "p:springGreen",
+          "properties": {
+            "display_mode": "files",
+            "fetch_package_manager": true,
+            "extensions": [
+              "*.js",
+              "*.cjs",
+              "*.mjs",
+              "*.ts",
+              "*.ts",
+              "*.tsx",
+              "package.json",
+              "package-lock.json",
+              "yarn.lock",
+              "pnpm-lock.yaml"
+            ]
+          },
+          "template": "{{ if .Error }}{{ else }}(\ued0d{{ .Major }}){{ end }}"
+        },
+        {
+          "type": "bun",
+          "style": "plain",
+          "foreground": "p:sakuraPink",
+          "properties": {
+            "display_mode": "files"
+          },
+          "template": "{{ if .Error }}{{ else }}(\ue76f{{ .Major }}){{ end }}"
+        },
+        {
+          "type": "java",
+          "style": "plain",
+          "foreground": "p:waveRed",
+          "properties": {
+            "display_mode": "files"
+          },
+          "template": "{{ if .Error }} {{ else }}(\uedaf{{ .Major }}){{ end }}"
+        },
+        {
+          "type": "python",
+          "style": "plain",
+          "foreground": "p:roninYellow",
+          "properties": {
+            "display_mode": "files",
+            "extensions": [
+              "*.py",
+              "*.ipynb",
+              "pyproject.toml",
+              "venv.bak",
+              ".venv/*",
+              ".env/*"
+            ]
+          },
+          "template": "{{ if .Error }}{{ else }}(\udb80\udf20{{ .Major }}){{ end }}"
+        },
+        {
+          "type": "php",
+          "style": "plain",
+          "foreground": "p:springViolet2",
+          "properties": {
+            "display_mode": "files"
+          },
+          "template": "{{ if .Error }} {{ else }}(\udb80\udf1f{{ .Major }}){{ end }}"
+        },
+        {
+          "foreground": "p:katanaGray",
+          "template": "{{ if .HEAD }} in {{ end }}",
+          "style": "plain",
+          "type": "git"
+        },
+        {
+          "foreground": "p:autumnRed",
+          "style": "plain",
+          "properties": {
+            "branch_icon": "\ue725"
+          },
+          "template": "{{ .HEAD }}",
+          "type": "git"
+        },
+        {
+          "style": "plain",
+          "foreground": "p:katanaGray",
+          "type": "text",
+          "template": ":"
+        }
+      ]
+    }
+  ],
+  "console_title_template": "{{.Shell}} in {{.PWD}}",
+  "final_space": true,
+  "version": 3
+}

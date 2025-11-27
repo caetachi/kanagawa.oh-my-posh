@@ -25,9 +25,10 @@
       "segments": [
         {
           "foreground_templates": [
-            "{{if eq \"Charging\" .State.String}}p:boatYellow2{{end}}",
-            "{{if eq \"Discharging\" .State.String}}p:waveRed{{end}}",
-            "{{if eq \"Full\" .State.String}}p:autumnGreen{{end}}"
+            "{{ if ge .Percentage 69}}p:autumnGreen{{ end }}",
+            "{{ if and (ge .Percentage 40) (le .Percentage 68) }}p:boatYellow2{{ end }}",
+            "{{ if and (ge .Percentage 10) (le .Percentage 39) }}p:waveRed{{ end }}",
+            "{{ if le .Percentage 9 }}p:autumnRed{{ end }}"
           ],
           "properties": {
             "discharging_icon": "\udb81\ude8c",
